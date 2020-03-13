@@ -51,11 +51,11 @@
 ;  added parameter "lst". By doing this, we could change the input file. So far, we could plot the scatterplots to see the 
 ;  correlations simply by changing the input strings and files.
 ;  There were also correlations that we wanted to visualize by seeing histograms, so we built hist-var1-var2-mean which works 
-;  just like the scatter-plot procedure that we could change the input strings and files to see the correlations between two 
-;  variables. Specially, we wanted to see the correlation between average counts and the 5 time categories, so we built a 
-;  recursive procedure tally-cnt to count the total number of bike rentals under each time category and dividing the numbers 
-;  by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
+just like the scatter-plot procedure that we could change the input strings and files to see the correlations between two 
+variables. Specially, we wanted to see the correlation between average counts and the 5 time categories, so we built a 
+recursive procedure tally-cnt to count the total number of bike rentals under each time category and dividing the numbers 
+by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
 
 ;算法与实现
 
-![hist-time-catg](https://github.com/zzyylliu/misc-projects/blob/master/%E5%85%B1%E4%BA%AB%E5%8D%95%E8%BD%A6%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/images/hist-time-catg.png =100x100)
+![hist-time-catg](https://github.com/zzyylliu/misc-projects/blob/master/%E5%85%B1%E4%BA%AB%E5%8D%95%E8%BD%A6%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/images/hist-time-catg.png | 100x100)
