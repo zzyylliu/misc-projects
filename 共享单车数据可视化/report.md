@@ -57,5 +57,4 @@ recursive procedure tally-cnt to count the total number of bike rentals under ea
 by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
 
 ;算法与实现
-
-![hist-time-catg](https://github.com/zzyylliu/misc-projects/blob/master/%E5%85%B1%E4%BA%AB%E5%8D%95%E8%BD%A6%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/images/hist-time-catg.png | 100x100)
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/%E5%85%B1%E4%BA%AB%E5%8D%95%E8%BD%A6%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/images/hist-time-catg.png" height="100">
