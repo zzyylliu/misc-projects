@@ -22,9 +22,42 @@
 ;  grouped by hour. This dataset encompasses a two year period from 1/1/2015 to 1/3/2017. There are in total 17414 
 ;  observations. In order to balance the dataset, we dropped the observations from 2017, leaving us with a total of 17342 
 ;  observations. Each entry in the dataset is a list of the form 
+;  ‘(timestamp  cnt  t1  t2  hum  wind-speed  weather-code  is-holiday  is-weekend  season). 
+;  To better understand the trend and patterns, we split the original dataset into subcategories and examined the differences 
+;  between these subcategories of data. We created subcategories based on timestamp such that we categorized the data into 
+;  morning rush, evening rush, day-time, night and mid-night. By a similar approach, we also created subcategories based on 
+;  season, is-holiday and is-weekend.
 
 ;数据
-; 我们在此项目中使用的数据集可直接从kaggle网站下载：https：//www.kaggle.com/hmavrodiev/london-bike-sharing-dataset，该数据集最初是从3个
-; 来源获得的：1）https：// cycling .data.tfl.gov.uk /（用于自行车数据）； 2）freemeteo.com（用于天气数据）； 3）https://www.gov.uk/bank
+; 我们在此项目中使用的数据集可直接从kaggle网站下载：https://www.kaggle.com/hmavrodiev/london-bike-sharing-dataset，该数据集最初是从3个
+; 来源获得的：1）https://cycling .data.tfl.gov.uk/（用于自行车数据）； 2）freemeteo.com（用于天气数据）； 3）https://www.gov.uk/bank
 ; （用于节假日数据）。该数据集按小时分组，因此我们可以获得有关每小时发生的新单车份额的信息，以及按小时分组的时间戳和其他因素。此数据集涵盖从1/1/2015
-; 到1/3/2017的两年时间。总共有17414个观测值。为了平衡数据集，我们删除了2017年以来的观测值，总共剩下17342个观测值。数据集中的每个条目都是表单的列表
+; 到1/3/2017的两年时间。总共有17414个观测值。为了平衡数据集，我们删除了2017年以来的观测值，总共剩下17342个观测值。数据集中的每个条目都是以下列形式
+; 排列：'(时间戳  单车数  实际温度  体感温度  湿度  风速  天气代码  是否节假日  是否周末  季节）。 
+; 为了更好地了解趋势和模式，我们将原始数据集划分为子类别并检查了差异在这些数据子类别之间。我们根据时间戳创建了子类别，以便将数据分类为早高峰，晚高峰，
+; 白天，黑夜和深夜。通过类似的方法，我们还创建了其他子类别比如季节、假日和周末。
+
+;Algorithm and Implementation
+;  The first procedure written is called “not-2017?”, which is to clean the dataset by dropping all data in 2017. We then 
+;  defined a few predicates based on season, is-holiday and is-weekend, to help us filter the data as we try to create 
+;  subcategories. 
+;  After defining the predicates, we wrote a procedure called “describe-cnt-mean-min-max” to see the mean, minimum, and maximum 
+;  of cnt for each subcategories of data, which is used to calculate the values in Table 2. 
+;  Before visualizing the data, we divide the dataset into 5 time categories. We wrote a time-categories procedure to see if an 
+;  entry lies in "morning traffic", "evening traffic", "evening", "night and early morning", or "regular time". Then we filtered 
+;  the original dataset and created 5 datasets under these different time categories. 
+;  Then we wrote var1-var2 to create a list of pairs, where all values of var1 and var2 are paired. Then We built a recursive 
+;  procedure to show the mean values of var2 related to each value of var1. Next, we created filtered-var1-var2-mean where we 
+;  added parameter "lst". By doing this, we could change the input file. So far, we could plot the scatterplots to see the 
+;  correlations simply by changing the input strings and files.
+;  There were also correlations that we wanted to visualize by seeing histograms, so we built hist-var1-var2-mean which works 
+;  just like the scatter-plot procedure that we could change the input strings and files to see the correlations between two 
+;  variables. Specially, we wanted to see the correlation between average counts and the 5 time categories, so we built a 
+;  recursive procedure tally-cnt to count the total number of bike rentals under each time category and dividing the numbers 
+;  by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
+
+;算法与实现
+
+
+
+
