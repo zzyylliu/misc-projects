@@ -1,3 +1,6 @@
+;The following code is written in scheme, which needs to be ran in a scheme environment like Dr.Racket.
+;以下代码使用scheme语言编写，需要在相应环境下运行，例如Dr.Racket。
+
 #lang racket
 (require csc151)
 (require plot)
