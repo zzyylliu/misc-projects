@@ -9,8 +9,8 @@ shares is accompanied by information on weather conditions and the occasion (if 
 or not) at that specific time. Therefore, in this project, we wrote a program to explore the patterns of bike sharing under 
 different conditions of weather and occasion, by creating sub-categories of data and visualizing the dataset thereafter. 
 
-> 介绍
-自行车共享是一项服务，自行车可以短期出租给个人并收取相应费用或免费使用。在此项目中，我们获取了有关共享自行车活动的数据集，该数据集提供了从2015年
+> 项目介绍
+> 自行车共享是一项服务，自行车可以短期出租给个人并收取相应费用或免费使用。在此项目中，我们获取了有关共享自行车活动的数据集，该数据集提供了从2015年
 1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都应附有有关天气状况和特定时间（无论是否是假期，是否是周末）
 的信息。因此，在这个项目中，我们编写了一个程序，通过创建数据子类别并随后可视化数据集来探索不同天气和场合下自行车共享的模式。
 
