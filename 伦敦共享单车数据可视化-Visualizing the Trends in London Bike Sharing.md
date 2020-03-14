@@ -60,3 +60,13 @@ by the length of different files to get the average counts. Then we could plot t
 ### 算法与实现
 
 <img src="https://github.com/zzyylliu/misc-projects/blob/master/%E5%85%B1%E4%BA%AB%E5%8D%95%E8%BD%A6%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/images/hist-time-catg.png" height="300">
+
+
+```mermaid
+pie title What Voldemort doesn't have?
+         "FRIENDS" : 2
+         "FAMILY" : 3
+         "NOSE" : 45
+```
+
+
