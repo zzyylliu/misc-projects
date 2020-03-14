@@ -2,8 +2,9 @@
 > 伦敦市共享单车：数据可视化项目报告
 
 ### Introduction
-> 项目介绍 <
-  Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a 
+> 项目介绍 
+
+Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a 
 price or free. In this project, we acquired a dataset on bike-sharing activities that provides information on the hourly 
 number of bike shares in London, across a two-year period, from 1/1/2015 to 1/3/2017. Each entry of hourly record of bike 
 shares is accompanied by information on weather conditions and the occasion (if it was holiday or not, if it was weekend 
