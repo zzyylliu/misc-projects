@@ -145,14 +145,14 @@ Table 2. Sub-categories of data(数据子类别)
 |                      | winter               | 826.775         | 12             | 4415           |
 
 From the table above, we can see that the sub-category with the highest mean of cnt is “evening-traffic-bike” under the timestamp subcategories. The mean of cnt during holidays and weekends is lower than the mean of cnt outside of holidays and weekends, with holidays having the slightly lower mean of cnt than weekends do. For the four seasonal subcategories, all but winter has an exceptionally low mean of cnt. 
-> 从上表中可以看出，在时间戳子类别下，cnt(单车共享数量）平均值最高的子类别是**晚高峰时段**。假日和周末期间的cnt平均值低于假日和周末之外的cnt平均值，而假日的cnt平均值则比周末略低。四个季节子类别中，冬季在所有季节中的cnt均值均极低。
+> 从上表中可以看出，在时间戳子类别下，cnt(单车共享数量）平均值最高的子类别是晚高峰时段。假日和周末期间的cnt平均值低于假日和周末之外的cnt平均值，而假日的cnt平均值则比周末略低。四个季节子类别中，冬季在所有季节中的cnt均值均极低。
 
 ### Data Visualization
 > 数据可视化
 
-After cleaning and categorizing the dataset, we can begin with the main task of this project, data visualization. In this project, we are plotting both two-dimensional and three-dimensional graphs to see the pattern in London bike sharing. As a result, we are writing similar procedures for 2-d and 3-d data visualization respectively. We first write a procedure `2d-vars` or `3d-vars` (for 2-d and 3-d respectively) to extract the variables we want from the dataset and merge them into a new list. Based on this new list, we extract all the values of the second and third variables grouped under the same value of the first variable. Then we calculate the mean of the grouped values of the second and third variables, so that they correspond with each value of the first variable by the recursive procedure `2d-vars-mean` and `3d-vars-mean`. 
+After cleaning and categorizing the dataset, we can begin with the main task of this project, data visualization. In this project, we are plotting both two-dimensional and three-dimensional graphs to see the pattern in London bike sharing. As a result, we are writing similar procedures for 2-d and 3-d data visualization respectively. We first write a procedure `2d-vars` or `3d-vars` (for 2-d and 3-d respectively) to extract the variables we want from the dataset and merge them into a new list. Based on this new list, we extract all the values of the second and third variables grouped under the same value of the first variable. Then we calculate the mean of the grouped values of the second or third variables, so that they correspond with each value of the first variable by the recursive procedure `2d-vars-mean` and `3d-vars-mean`. 
 
-> 在对数据集进行清理和分类之后，我们可以开始本项目的主要任务，即数据可视化。在此项目中，我们绘制了二维和三维图，以理解伦敦市共享单车模式。因此，我们针对二维和三维数据可视化所撰写的程序具有一定相似性。首先，我们通过程序`2d-vars`或`3d-vars`（分别用于二维和三维），将从大数据集中提取的变量合并为一个新列表。基于此新列表，我们提取第一变量所有相同值下的第二和第三变量的所有值。然后，通过递归程序`2d-vars-mean`和`3d-vars-mean`产生一个新列表，展示第一变量对应的第二变量和第三变量的平均值。
+> 在对数据集进行清理和分类之后，我们可以开始本项目的主要任务，即数据可视化。在此项目中，我们绘制了二维和三维图，以理解伦敦市共享单车模式。因此，我们针对二维和三维数据可视化所撰写的程序具有一定相似性。首先，我们通过程序`2d-vars`或`3d-vars`（分别用于二维和三维），将从大数据集中提取的变量合并为一个新列表。基于此新列表，我们提取第一变量所有相同值下的第二或第三变量的所有值。然后，通过递归程序`2d-vars-mean`和`3d-vars-mean`产生一个新列表，展示第一变量/第二变量对应的第二变量或第三变量的平均值。
 
 ```scheme
 ;2d-vars
