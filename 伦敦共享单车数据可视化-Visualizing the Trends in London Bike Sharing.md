@@ -273,6 +273,8 @@ At last, there are also patterns that are best visualized by histograms, so we w
 ### Outcome and Analysis 
 > 结果与分析
 
+With the help from above procedures, we have found a few interesting patterns in London bike sharing with respect to weather and time conditions. As noted above, variables in this dataset are mainly from two aspects, time (including occasion such as is-weekend and is-holiday), and weather conditions such as t1, t2 and wind-speed. We set the dataset into 
+
 <img src=" " height="300">
 
 
