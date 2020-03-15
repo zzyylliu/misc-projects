@@ -15,7 +15,7 @@ Bike sharing is a service in which bikes are made available for shared use to in
 The dataset we employed in this project is directly downloaded from the kaggle website: https://www.kaggle.com/hmavrodiev/london-bike-sharing-dataset, which is originally acquired from 3 sources: 1) https://cycling.data.tfl.gov.uk/ (for biking data); 2) freemeteo.com (for weather data); 3) https://www.gov.uk/bank (for holidays data). This dataset is grouped by hour, so that we have information on the hourly new bike shares occurred, along with the timestamp and other factors grouped by hour. This dataset encompasses a two year period from 1/1/2015 to 1/3/2017. There are in total 17414 observations. In order to balance the dataset, we dropped the observations from 2017, using a procedure called `not-2017?` leaving us with a total of 17342 observations. 
 > 我们在此项目中使用的数据集可直接从kaggle网站下载：https://www.kaggle.com/hmavrodiev/london-bike-sharing-dataset 。该数据集最初是从3个来源获得的：1）https://cycling.data.tfl.gov.uk/ （用于自行车数据）；2）https://freemeteo.com （用于天气数据）；3）https://www.gov.uk/bank （用于节假日数据）。该数据集按小时分组，因此我们可以获得有关每小时发生的新单车份额的信息，以及按小时分组的时间戳和其他因素。此数据集涵盖从1/1/2015到1/3/2017的两年时间。总共有17414个观测值。为了平衡数据集，我们用`not-2017?`这个程序删除了2017年以来的观测值，总共剩下17342个观测值。
 
-```
+```scheme
 ;Cleaning
 (define not-2017?
   (lambda (str)
@@ -156,6 +156,43 @@ From the table above, we can see that the sub-category with the highest mean of 
 ### Data Visualization
 > 数据可视化
 
+After cleaning and categorizing the dataset, we can begin with the main task of this project, data visualization. In this project, we are plotting both two-dimensional and three-dimensional graphs to see the pattern in London bike sharing. As a result, we are writing similar procedures for 2-d and 3-d data visualization respectively. We first write a procedure `2d-vars` or `3d-vars` (for 2-d and 3-d respectively) to extract the variables we want from the dataset and merge them into a new list.
+
+```scheme
+;2d-vars
+(define var1-var2
+  (lambda (var1 var2)
+    (map list var1 var2)))
+
+;2d-vars-mean
+(define var1-var2-mean
+  (lambda (var1 var2)
+    (let ([var1-val (map car (tally-all var1))])
+      (let ([val1-var2 (lambda (val1) (filter (o (section = <> val1) car) (var1-var2 var1 var2)))])
+        (let ([val1-var2-mean (lambda (val1)
+                                (list val1 (/ (reduce + (map cadr (val1-var2 val1))) (length (val1-var2 val1)))))])
+          (let kernel ([lst var1-val])
+            (cond
+              [(null? lst) null]
+              [else (cons (val1-var2-mean (car lst)) (kernel (cdr lst)))])))))))
+
+(define 3d-vars
+  (lambda (var1 var2 var3)
+    (map list var1 var2 var3)))
+
+(define 3d-vars-mean
+  (lambda (var1 var2 var3)
+    (let ([vals-of-var1-var2 (map car (tally-all (map list var1 var2)))])
+      (let ([vals-var3 (lambda (vals) (filter (o (section equal? <> vals) (section take <> 2)) (3d-vars var1 var2 var3)))])
+        (let ([vals-var3-mean (lambda (vals)
+                                (append vals (list (/ (reduce + (map caddr (vals-var3 vals))) (length (vals-var3 vals))))))])
+          (let kernel ([lst vals-of-var1-var2])
+            (cond
+              [(null? lst) null]
+              [else (cons (vals-var3-mean (car lst)) (kernel (cdr lst)))])))))))
+```
+
+在对数据集进行清理和分类之后，我们可以开始本项目的主要任务，即数据可视化。
 
 Then we wrote var1-var2 to create a list of pairs, where all values of var1 and var2 are paired. Then We built a recursive procedure to show the mean values of var2 related to each value of var1. Next, we created filtered-var1-var2-mean where we added parameter "lst". By doing this, we could change the input file. So far, we could plot the scatterplots to see the correlations simply by changing the input strings and files.
 
