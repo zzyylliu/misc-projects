@@ -40,7 +40,7 @@ Table 1. Data description(数据说明）
 | season            | category of seasons                       | category represented by number | 0       | 3       |
 
 To better understand the trend and patterns, we split the original dataset into subcategories and examined the differences between these subcategories of data. We created subcategories based on timestamp using the following procedures, such that we categorized the data into morning rush, evening rush, day-time, night and mid-night. 
-> 为了更好地了解趋势和模式，我们将原始数据集划分为子类别并检查了这些数据子类别之间的差异。我们用一系列程序根据时间戳创建了数据子集，将数据分类为早高峰，晚高峰，白天，夜晚和深夜。
+> 为了更好地理解单车共享模式，我们将原始数据集分类并检查了他们之间的差异。我们用一系列程序根据时间戳创建了数据子集，将数据分类为早高峰，晚高峰，白天，夜晚和深夜。
 
 ```scheme
 ;time categories
