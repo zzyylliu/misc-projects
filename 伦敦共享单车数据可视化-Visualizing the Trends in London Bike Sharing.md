@@ -7,7 +7,7 @@
 Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a price or free. In this project, we acquired a dataset on bike-sharing activities that provides information on the hourly number of bike shares in London, across a two-year period, from 1/1/2015 to 1/3/2017. Each entry of hourly record of bike shares is accompanied by information on weather conditions and the occasion (if it was holiday or not, if it was weekend or not) at that specific time. Therefore, in this project, we wrote a program to explore the patterns of bike sharing under different conditions of weather and occasion, by creating sub-categories of data and visualizing the dataset thereafter. 
 
 > 自行车共享是一项服务，自行车可以短期出租给个人并收取相应费用或免费使用。在此项目中，我们获取了有关共享自行车活动的数据集，该数据集提供了从2015年
-1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们编写了一个程序，实现数据清洗、创建数据子类别、和数据可视化，探索不同天气和场合下自行车共享的模式。
+1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们编写了一个程序，实现数据清洗、创建数据子集、和数据可视化，探索不同天气和场合下自行车共享的模式。
 
 ### Data Background and Cleaning
 > 数据背景及清洗
@@ -40,7 +40,7 @@ Table 1. Data description(数据说明）
 | season            | category of seasons                       | category represented by number | 0       | 3       |
 
 To better understand the trend and patterns, we split the original dataset into subcategories and examined the differences between these subcategories of data. We created subcategories based on timestamp using the following procedures, such that we categorized the data into morning rush, evening rush, day-time, night and mid-night. 
-> 为了更好地了解趋势和模式，我们将原始数据集划分为子类别并检查了这些数据子类别之间的差异。我们用一系列程序根据时间戳创建了子类别，将数据分类为早高峰，晚高峰，白天，夜晚和深夜。
+> 为了更好地了解趋势和模式，我们将原始数据集划分为子类别并检查了这些数据子类别之间的差异。我们用一系列程序根据时间戳创建了数据子集，将数据分类为早高峰，晚高峰，白天，夜晚和深夜。
 
 ```scheme
 ;time categories
@@ -90,7 +90,7 @@ To better understand the trend and patterns, we split the original dataset into 
             (filter-time (cdr fname) str)))))
 ```
 By a similar approach, we defined a few `predicates` to help us create subcategories based on season, is-holiday and is-weekend. 
-> 通过类似的方法，我们用下面这些`predicates`创建了其他子类别比如季节、假日和周末。
+> 通过类似的方法，我们用下面这些`predicates`创建了其他子集比如季节、假日和周末。
 
 ```scheme
 ;predicate?
@@ -105,7 +105,7 @@ By a similar approach, we defined a few `predicates` to help us create subcatego
 ;We are defining all predicates for future filtering.
 ```
 After defining the predicates, we wrote a procedure called `describe-cnt-mean-min-max` to see the mean, minimum, and maximum of cnt for each subcategories of data, which is used to calculate the values in Table 2. 
-> 接着我们对分类后的数据进行初步分析，通过下面的`describe-cnt-mean-min-max`得到不同子类别下的单车计数平均值、最小值和最大值，表2展示这些信息。
+> 接着我们对分类后的数据进行初步分析，通过下面的`describe-cnt-mean-min-max`得到不同子集下的单车计数平均值、最小值和最大值，表2展示这些信息。
 
 ```scheme
 ;;;Procedure
@@ -127,7 +127,7 @@ After defining the predicates, we wrote a procedure called `describe-cnt-mean-mi
     (let ([cnt (map cadr lst)])
       (map exact->inexact (list (/ (reduce + cnt) (length cnt)) (reduce min cnt) (reduce max cnt))))))
 ```
-Table 2. Sub-categories of data(数据子类别)
+Table 2. Sub-categories of data(数据子集)
 | **category base**    | **sub-categories**   | **mean of cnt** | **min of cnt** | **max of cnt** |
 | -------------------- | -------------------- | --------------- | -------------- | -------------- |
 | timestamp            | morning-traffic-bike | 1621.124        | 21             | 7531           |
@@ -145,7 +145,7 @@ Table 2. Sub-categories of data(数据子类别)
 |                      | winter               | 826.775         | 12             | 4415           |
 
 From the table above, we can see that the sub-category with the highest mean of cnt is “evening-traffic-bike” under the timestamp subcategories. The mean of cnt during holidays and weekends is lower than the mean of cnt outside of holidays and weekends, with holidays having the slightly lower mean of cnt than weekends do. For the four seasonal subcategories, all but winter has an exceptionally low mean of cnt. 
-> 从上表中可以看出，在时间戳子类别下，cnt(单车共享数量）平均值最高的子类别是晚高峰时段。假日和周末期间的cnt平均值低于假日和周末之外的cnt平均值，而假日的cnt平均值则比周末略低。四个季节子类别中，冬季在所有季节中的cnt均值均极低。
+> 从上表中可以看出，在时间戳子类别下，cnt(单车共享数量）平均值最高的子集是晚高峰时段。假日和周末期间的cnt平均值低于假日和周末之外的cnt平均值，而假日的cnt平均值则比周末略低。四个季节子类别中，冬季在所有季节中的cnt均值均极低。
 
 ### Data Visualization
 > 数据可视化
@@ -242,9 +242,9 @@ With the help of the above procedures, we can now plot 2-d and 3-d graphs with p
               #:altitude 10))))
 ```
 At last, there are also patterns that are best visualized by histograms, so we wrote `sorted-2d-hist` and `sorted-3d-hist` to do this for us. Just like the way we defined `plot2d` and `plot3d`, here one can also control the input file with `predicates` defined earlier. 
-> 最后，还有一些适合通过柱状图可视化的数据关系，我们有`sorted-2d-hist`和`sorted-3d-hist`来做这件事。就像我们定义`plot2d`和`plot3d`的方式一样，这里也可以使用前面定义的`predicates`来控制输入数据，对比数据子类别之间的差异。
+> 最后，还有一些适合通过柱状图可视化的数据关系，我们有`sorted-2d-hist`和`sorted-3d-hist`来做这件事。就像我们定义`plot2d`和`plot3d`的方式一样，这里也可以使用前面定义的`predicates`来控制输入数据，对比子集之间的差异。
 
-```
+```scheme
 (define sorted-2d-hist
   (lambda (str1 str2 lst)
     (let ([var1 (map (section list-ref <> (index-of str1 mod-first-row)) lst)]
