@@ -42,7 +42,7 @@ Table 1. Data description(数据说明）
 To better understand the trend and patterns, we split the original dataset into subcategories and examined the differences between these subcategories of data. We created subcategories based on timestamp using the following procedures, such that we categorized the data into morning rush, evening rush, day-time, night and mid-night. 
 > 为了更好地了解趋势和模式，我们将原始数据集划分为子类别并检查了这些数据子类别之间的差异。我们用一系列程序根据时间戳创建了子类别，将数据分类为早高峰，晚高峰，白天，夜晚和深夜。
 
-```
+```scheme
 ;time categories
 ;;;Procedure
 ;;; time-categories
@@ -88,18 +88,11 @@ To better understand the trend and patterns, we split the original dataset into 
     (if (null? fname) null
         (if (equal? (time-categories (car fname)) str) (cons (car fname) (filter-time (cdr fname) str))
             (filter-time (cdr fname) str)))))
-
-(define morning-traffic-bike (filter-time bike "morning traffic"))
-(define evening-traffic-bike (filter-time bike "evening traffic"))
-(define night-bike (filter-time bike "evening"))
-(define day-time-bike (filter-time bike "regular time"))
-(define midnight-bike (filter-time bike "night and early morning"))
-;We use filter-time to divide bike into 5 subcategories.
 ```
-By a similar approach, we defined a few `predicates` to help us created subcategories based on season, is-holiday and is-weekend. 
+By a similar approach, we defined a few `predicates` to help us create subcategories based on season, is-holiday and is-weekend. 
 > 通过类似的方法，我们用下面这些`predicates`创建了其他子类别比如季节、假日和周末。
 
-```
+```scheme
 ;predicate?
 (define spring? (lambda (lst) (= (list-ref lst 9) 0)))
 (define summer? (lambda (lst) (= (list-ref lst 9) 1)))
@@ -113,7 +106,8 @@ By a similar approach, we defined a few `predicates` to help us created subcateg
 ```
 After defining the predicates, we wrote a procedure called `describe-cnt-mean-min-max` to see the mean, minimum, and maximum of cnt for each subcategories of data, which is used to calculate the values in Table 2. 
 > 接着我们对分类后的数据进行初步分析，通过下面的`describe-cnt-mean-min-max`得到不同子类别下的单车计数平均值、最小值和最大值，表2展示这些信息。
-```
+
+```scheme
 ;;;Procedure
 ;;; describe-cnt-mean-min-max
 ;;;Parameters
@@ -156,19 +150,21 @@ From the table above, we can see that the sub-category with the highest mean of 
 ### Data Visualization
 > 数据可视化
 
-After cleaning and categorizing the dataset, we can begin with the main task of this project, data visualization. In this project, we are plotting both two-dimensional and three-dimensional graphs to see the pattern in London bike sharing. As a result, we are writing similar procedures for 2-d and 3-d data visualization respectively. We first write a procedure `2d-vars` or `3d-vars` (for 2-d and 3-d respectively) to extract the variables we want from the dataset and merge them into a new list.
+After cleaning and categorizing the dataset, we can begin with the main task of this project, data visualization. In this project, we are plotting both two-dimensional and three-dimensional graphs to see the pattern in London bike sharing. As a result, we are writing similar procedures for 2-d and 3-d data visualization respectively. We first write a procedure `2d-vars` or `3d-vars` (for 2-d and 3-d respectively) to extract the variables we want from the dataset and merge them into a new list. Based on this new list, we extract all the values of the second and third variables grouped under the same value of the first variable. Then we calculate the mean of the grouped values of the second and third variables, so that they correspond with each value of the first variable by the recursive procedure `2d-vars-mean` and `3d-vars-mean`. 
+
+> 在对数据集进行清理和分类之后，我们可以开始本项目的主要任务，即数据可视化。在此项目中，我们绘制了二维和三维图，以理解伦敦市共享单车模式。因此，我们针对二维和三维数据可视化所撰写的程序具有一定相似性。首先，我们通过程序`2d-vars`或`3d-vars`（分别用于二维和三维），将从大数据集中提取的变量合并为一个新列表。基于此新列表，我们提取第一变量所有相同值下的第二和第三变量的所有值。然后，通过递归程序`2d-vars-mean`和`3d-vars-mean`产生一个新列表，展示第一变量对应的第二变量和第三变量的平均值。
 
 ```scheme
 ;2d-vars
-(define var1-var2
+(define 2d-vars
   (lambda (var1 var2)
     (map list var1 var2)))
 
 ;2d-vars-mean
-(define var1-var2-mean
+(define 2d-vars-mean
   (lambda (var1 var2)
     (let ([var1-val (map car (tally-all var1))])
-      (let ([val1-var2 (lambda (val1) (filter (o (section = <> val1) car) (var1-var2 var1 var2)))])
+      (let ([val1-var2 (lambda (val1) (filter (o (section = <> val1) car) (2d-vars var1 var2)))])
         (let ([val1-var2-mean (lambda (val1)
                                 (list val1 (/ (reduce + (map cadr (val1-var2 val1))) (length (val1-var2 val1)))))])
           (let kernel ([lst var1-val])
@@ -176,10 +172,12 @@ After cleaning and categorizing the dataset, we can begin with the main task of 
               [(null? lst) null]
               [else (cons (val1-var2-mean (car lst)) (kernel (cdr lst)))])))))))
 
+;3d-vars
 (define 3d-vars
   (lambda (var1 var2 var3)
     (map list var1 var2 var3)))
 
+;3d-vars-mean
 (define 3d-vars-mean
   (lambda (var1 var2 var3)
     (let ([vals-of-var1-var2 (map car (tally-all (map list var1 var2)))])
@@ -192,15 +190,88 @@ After cleaning and categorizing the dataset, we can begin with the main task of 
               [else (cons (vals-var3-mean (car lst)) (kernel (cdr lst)))])))))))
 ```
 
-在对数据集进行清理和分类之后，我们可以开始本项目的主要任务，即数据可视化。
+With the help of the above procedures, we can now plot 2-d and 3-d graphs with procedures `plot2d-vars-mean` and `plot3d-vars-mean`. Notice that in these two procedures, one can change the input file to control the subcategories of the dataset and make use of all the predicates we defined above. 
+> 借助上面这些程序，我们现在可以使用`plot2d-vars-mean`和`plot3d-vars-mean`绘制2-d和3-d图。值得一提的是，这里可以使用在数据清理阶段定义的`predicates`来控制输入程序的数据子类别，达到数据分类、对比的可视化效果。
 
-Then we wrote var1-var2 to create a list of pairs, where all values of var1 and var2 are paired. Then We built a recursive procedure to show the mean values of var2 related to each value of var1. Next, we created filtered-var1-var2-mean where we added parameter "lst". By doing this, we could change the input file. So far, we could plot the scatterplots to see the correlations simply by changing the input strings and files.
+```scheme
+;;;Procedure
+;;; plot2d-vars-mean
+;;;Parameters
+;;; str1, a string
+;;; str2, a string
+;;; lst, a list (or a file)
+;;;Purpose
+;;; to output a scatter plot while x-axis represents str1 and y-aixs represents str2
+;;;Produces
+;;; plot, a scatter plot of correlation between str1 and str2
+;;;Preconditions
+;;; str1 and str2 are the strings contained in the first-row
+;;; lst is in the form of bike, a list of lists and each small list has equal length. 
+;;;Postconditions
+;;; [No additional] 
+(define plot-var1-var2-mean
+  (lambda (str1 str2 lst)
+    (let ([var1 (map (section list-ref <> (index-of str1 first-row)) lst)]
+          [var2 (map (section list-ref <> (index-of str2 first-row)) lst)])
+      (plot (points (2d-vars-mean var1 var2) #:sym 'fullcircle1
+                    #:x-min (reduce min var1)
+                    #:x-max (reduce max var1)
+                    #:y-min (reduce min var2)
+                    #:y-max (reduce max var2))
+            #:title (string-append str1 " vs " str2)
+            #:x-label str1
+            #:y-label str2))))
 
-There were also correlations that we wanted to visualize by seeing histograms, so we built hist-var1-var2-mean which works just like the scatter-plot procedure that we could change the input strings and files to see the correlations between two variables. Specially, we wanted to see the correlation between average counts and the 5 time categories, so we built a recursive procedure tally-cnt to count the total number of bike rentals under each time category and dividing the numbers by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
+;plot3d-vars-mean
+(define plot3d-vars-mean
+  (lambda (str1 str2 str3 lst)
+    (let ([var1 (map (section list-ref <> (index-of str1 first-row)) lst)]
+          [var2 (map (section list-ref <> (index-of str2 first-row)) lst)]
+          [var3 (map (section list-ref <> (index-of str3 first-row)) lst)])
+      (plot3d (points3d (3d-vars-mean var1 var2 var3) #:sym 'fullcircle1
+                        #:x-min (reduce min var1)
+                        #:x-max (reduce max var1)
+                        #:y-min (reduce min var2)
+                        #:y-max (reduce max var2)
+                        #:z-min (reduce min var3)	 
+                        #:z-max (reduce max var3))
+              #:title (string-append str1 " and " str2 " vs " str3)
+              #:x-label str1
+              #:y-label str2
+              #:z-label str3
+              #:altitude 10))))
+```
+At last, there are also patterns that are best visualized by histograms, so we wrote `sorted-2d-hist` and `sorted-3d-hist` to do this for us. Just like the way we defined `plot2d` and `plot3d`, here one can also control the input file with `predicates` defined earlier. 
+> 最后，还有一些适合通过柱状图可视化的数据关系，我们有`sorted-2d-hist`和`sorted-3d-hist`来做这件事。就像我们定义`plot2d`和`plot3d`的方式一样，这里也可以使用前面定义的`predicates`来控制输入数据，对比数据子类别之间的差异。
 
+```
+(define sorted-2d-hist
+  (lambda (str1 str2 lst)
+    (let ([var1 (map (section list-ref <> (index-of str1 mod-first-row)) lst)]
+          [var2 (map (section list-ref <> (index-of str2 mod-first-row)) lst)])
+      (let ([sort-by-key (lambda (pair1 pair2)
+                           (if (< (car pair1) (car pair2))
+                               #t
+                               #f))])
+        (let ([pairs (sort (2d-vars-mean var1 var2) sort-by-key)])
+          (plot (discrete-histogram pairs)))))))
 
+(define sorted-3d-hist
+  (lambda (str1 str2 str3 lst)
+    (let ([var1 (map (section list-ref <> (index-of str1 mod-first-row)) lst)]
+          [var2 (map (section list-ref <> (index-of str2 mod-first-row)) lst)]
+          [var3 (map (section list-ref <> (index-of str3 mod-first-row)) lst)])
+      (let ([sort-by-key (lambda (triple1 triple2)
+                           (cond
+                             [(> (car triple1) (car triple2)) #f]
+                             [(> (cadr triple1) (cadr triple2)) #f]
+                             [else #t]))])
+        (let ([triples (sort (3d-vars-mean var1 var2 var3) sort-by-key)])
+          (plot3d (discrete-histogram3d triples)))))))
+```
 
-
+### Outcome and Analysis 
+> 结果与分析
 
 <img src=" " height="300">
 
