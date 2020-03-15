@@ -156,6 +156,7 @@ From the table above, we can see that the sub-category with the highest mean of 
 ### Data Visualization
 > 数据可视化
 
+
 Then we wrote var1-var2 to create a list of pairs, where all values of var1 and var2 are paired. Then We built a recursive procedure to show the mean values of var2 related to each value of var1. Next, we created filtered-var1-var2-mean where we added parameter "lst". By doing this, we could change the input file. So far, we could plot the scatterplots to see the correlations simply by changing the input strings and files.
 
 There were also correlations that we wanted to visualize by seeing histograms, so we built hist-var1-var2-mean which works just like the scatter-plot procedure that we could change the input strings and files to see the correlations between two variables. Specially, we wanted to see the correlation between average counts and the 5 time categories, so we built a recursive procedure tally-cnt to count the total number of bike rentals under each time category and dividing the numbers by the length of different files to get the average counts. Then we could plot the histograms by listing 5 pairs. 
