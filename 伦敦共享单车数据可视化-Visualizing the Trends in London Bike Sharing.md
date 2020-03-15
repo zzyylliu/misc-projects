@@ -191,7 +191,7 @@ After cleaning and categorizing the dataset, we can begin with the main task of 
 ```
 
 With the help of the above procedures, we can now plot 2-d and 3-d graphs with procedures `plot2d-vars-mean` and `plot3d-vars-mean`. Notice that in these two procedures, one can change the input file to control the subcategories of the dataset and make use of all the predicates we defined above. 
-> 借助上面这些程序，我们现在可以使用`plot2d-vars-mean`和`plot3d-vars-mean`绘制2-d和3-d图。值得一提的是，这里可以使用在数据清理阶段定义的`predicates`来控制输入程序的数据子类别，达到数据分类、对比的可视化效果。
+> 借助上面这些程序，我们现在可以使用`plot2d-vars-mean`和`plot3d-vars-mean`绘制2-d和3-d图。值得一提的是，这里可以使用在数据清理阶段定义的`predicates`来控制输入的数据子集，达到数据分类、对比的可视化效果。
 
 ```scheme
 ;;;Procedure
