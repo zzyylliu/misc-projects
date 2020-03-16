@@ -276,7 +276,7 @@ At last, there are also patterns that are best visualized by histograms, so we w
 From implementing the above procedures, we have found some noteworthy patterns in London bike sharing. 
 First, bike sharing distributes unevenly over the day on an hourly basis. Some noticeable spikes are from 7am to 9am, namely the morning-traffic period, and from 5pm to 7pm, the evening-traffic period. On average, cnt is higher during the morning traffic period than in the evening. 
 > 借助上面这些程序，我们发现了一些伦敦自行车共享中值得注意的规律。
-首先，单车共享数量在一天中分布不均。明显的高峰是从早上7点到早上9点（即早高峰时段）和从下午5点到晚上7点（晚高峰时段）。平均而言，早上交通时段的CNT（共享单车数量）高于晚上。
+首先，单车共享数量在一天中分布不均。明显的高峰是从早上7点到早上9点（即早高峰时段）和从下午5点到晚上7点（晚高峰时段）。平均而言，早高峰时段的CNT（共享单车数量）高于晚高峰时段。
 
 <img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/hour-cnt.png" height="500">
 
