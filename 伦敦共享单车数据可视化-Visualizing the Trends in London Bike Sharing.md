@@ -7,7 +7,7 @@
 Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a price or free. In this project, we acquired a dataset on bike-sharing activities that provides information on the hourly number of bike shares in London, across a two-year period, from 1/1/2015 to 1/3/2017. Each entry of hourly record of bike shares is accompanied by information on weather conditions and the occasion (if it was holiday or not, if it was weekend or not) at that specific time. Therefore, in this project, we wrote a program to explore the patterns of bike sharing under different conditions of weather and occasion, by creating sub-categories of data and visualizing the dataset thereafter. 
 
 > 自行车共享是一项服务，自行车可以短期出租给个人并收取相应费用或免费使用。在此项目中，我们获取了有关共享自行车活动的数据集，该数据集提供了从2015年
-1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们编写了一个程序，实现数据清洗、创建数据子集、和数据可视化，探索不同天气和场合下自行车共享的模式。
+1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们编写了一个程序，实现数据清洗、创建数据子集、和数据可视化，探索不同天气和场合下自行车共享的规律。
 
 ### Data Background and Cleaning
 > 数据背景及清洗
@@ -275,22 +275,35 @@ At last, there are also patterns that are best visualized by histograms, so we w
 
 From implementing the above procedures, we have found some noteworthy patterns in London bike sharing. 
 First, bike sharing distributes unevenly over the day on an hourly basis. Some noticeable spikes are from 7am to 9am, namely the morning-traffic period, and from 5pm to 7pm, the evening-traffic period. On average, cnt is higher during the morning traffic period than in the evening. 
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/hour-cnt.png" height="300">
+> 借助上面这些程序，我们发现了一些伦敦自行车共享中值得注意的规律。
+首先，单车共享数量在一天中分布不均。明显的高峰是从早上7点到早上9点（即早高峰时段）和从下午5点到晚上7点（晚高峰时段）。平均而言，早上交通时段的CNT（共享单车数量）高于晚上。
+
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/hour-cnt.png" height="500">
 
 Second, occasions like weekends and holiday has an lowering effect on cnt, the number of bike sharing. 
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-cnt.png" height="300">
+> 其次，周末和节假日这类场景中对单车共享数CNT会影响降低。
+
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-cnt.png" height="500">
 
 Combining the two correlations above, the following graph shows that people rent bikes differently with respect to time, under the effect of holidays. Naturally, morning-traffic and evening-traffic disappears on holidays, instead, the bike sharing count reaches its peak at around noon of the day. 
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-hour-cnt**.png" height="300">
+> 结合以上两个相关性，下图显示，在假期的影响下，人们在租车方面的时间有所不同。节假日期间早高峰和晚高峰的自然都会消失，取而代之的是，单车共享次数会在一天中午左右达到最高点。
+
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-hour-cnt**.png" height="500">
 
 Now, temperature also has a clear impact on cnt. As temperature goes up above 10 degree Celsius, cnt spikes up and remains this positive correlation with temperature up to nearly 30 degree Celsius. Then the increase in cnt slows down a bit, even starts to decrease from looking at the data we have. This graph below indicates that we should look at the effect of temperature on cnt by different temperature intervals. 
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/t2-cnt.png" height="300">
+> 温度对cnt也有明显的影响。当温度升至10摄氏度以上时，cnt会飙升，在一直与温度保持正相关直到30摄氏度左右。然后，cnt的增加减缓，从我们拥有的数据中来看，cnt甚至会开始下降。由此可见，我们应该按不同的温度区间来看待温度对CNT的影响。
+
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/t2-cnt.png" height="500">
 
 As we try to combine effects of temperature and time on cnt, we found that in months of higher average temperatures like July and August, the comparison(from the first graph above, hour versus cnt) we made between morning and evening traffic period are reversed. As time moves into summer, temperature rises and the bike sharing count during evening-traffic period climbs and reaches its peak in July and August, exceeding the numbers during morning-traffic period. 
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/month:t-hour-cnt*.png" height="300">
+> 当我们尝试结合温度和时间对cnt的影响时，我们发现在平均气温较高的月份（例如7月和8月）中，早高峰和晚高峰的差异（见第一张图表：Hour vs CNT）被颠倒了。随着时间的流逝，夏季气温升高，晚上出行期间的自行车共享数量攀升，并在7月和8月达到高峰，超过了早高峰时段的共享单车数量。
+
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/month:t-hour-cnt*.png" height="500">
 
 Finally, we have found that, as temperature increases to around 15 degree Celsius, the number of bikes rented on holidays exceeds that on regular days. This, however, may have been caused not only by the fact of increases in temperature, but also from other factors outside of the dataset we have, such as visitors from outside of London spending their holiday in the city and renting bikes as they go around.
-<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-t2-cnt**.png" height="300">
+> 最后，我们发现，随着温度升高到15摄氏度左右，节假日租用的自行车数量超过了平日。但是，这可能不仅是由于温度升高而造成的，还可能是由于现有数据之外的其他因素引起的，例如外地游客在假期来到伦敦度假，并在出行时租用自行车而使得假期CNT上升。
 
-There are still a lot about this project one could do and add to. Feel free to leave comments and contributing to this project. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-t2-cnt**.png" height="500">
 
+There are still a lot about this project one could do and add to. Feel free to leave comments and contributing to this project. You can find the original code used in this project in the `images&dataset` file. 
+> 这个项目还有很大的改进和提升空间，欢迎任何人随时评论和为这个项目做贡献。您可以在 `images＆dataset`文件中找到此项目中使用的原始代码。谢谢。
