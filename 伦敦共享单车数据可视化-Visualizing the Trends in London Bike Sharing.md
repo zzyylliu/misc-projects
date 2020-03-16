@@ -4,10 +4,10 @@
 ### Introduction
 > 项目介绍
 
-Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a price or free. In this project, we acquired a dataset on bike-sharing activities that provides information on the hourly number of bike shares in London, across a two-year period, from 1/1/2015 to 1/3/2017. Each entry of hourly record of bike shares is accompanied by information on weather conditions and the occasion (if it was holiday or not, if it was weekend or not) at that specific time. Therefore, in this project, we wrote a program to explore the patterns of bike sharing under different conditions of weather and occasion, by creating sub-categories of data and visualizing the dataset thereafter. 
+Bike sharing is a service in which bikes are made available for shared use to individuals on a short term basis for a price or free. In this project, we acquired a dataset on bike-sharing activities that provides information on the hourly number of bike shares in London, across a two-year period, from 1/1/2015 to 1/3/2017. Each entry of hourly record of bike shares is accompanied by information on weather conditions and the occasion (if it was holiday or not, if it was weekend or not) at that specific time. Therefore, in this project, we used scheme to write a program to explore the patterns of bike sharing under different conditions of weather and occasion, by creating sub-categories of data and visualizing the dataset thereafter. 
 
 > 自行车共享是一项服务，自行车可以短期出租给个人并收取相应费用或免费使用。在此项目中，我们获取了有关共享自行车活动的数据集，该数据集提供了从2015年
-1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们编写了一个程序，实现数据清洗、创建数据子集、和数据可视化，探索不同天气和场合下自行车共享的规律。
+1月1日到2017年1/3/2两年期间伦敦每小时的自行车份额信息。每小时记录一次自行车共享记录时，都同时记录了有关天气状况和特定时间（无论是否是假期，是否是周末）的信息。因此，在这个项目中，我们用scheme编写了一系列程序，实现数据清洗、创建数据子集、和数据可视化，探索不同天气和场合下自行车共享的规律。
 
 ### Data Background and Cleaning
 > 数据背景及清洗
