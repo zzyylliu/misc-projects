@@ -273,10 +273,24 @@ At last, there are also patterns that are best visualized by histograms, so we w
 ### Outcome and Analysis 
 > 结果与分析
 
-With the help from above procedures, we have found a few interesting patterns in London bike sharing with respect to weather and time conditions. As noted above, variables in this dataset are mainly from two aspects, time (including occasion such as is-weekend and is-holiday), and weather conditions such as t1, t2 and wind-speed. We set the dataset into 
+From implementing the above procedures, we have found some noteworthy patterns in London bike sharing. 
+First, bike sharing distributes unevenly over the day on an hourly basis. Some noticeable spikes are from 7am to 9am, namely the morning-traffic period, and from 5pm to 7pm, the evening-traffic period. On average, cnt is higher during the morning traffic period than in the evening. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/hour-cnt.png" height="300">
 
-<img src=" " height="300">
+Second, occasions like weekends and holiday has an lowering effect on cnt, the number of bike sharing. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-cnt.png" height="300">
 
+Combining the two correlations above, the following graph shows that people rent bikes differently with respect to time, under the effect of holidays. Naturally, morning-traffic and evening-traffic disappears on holidays, instead, the bike sharing count reaches its peak at around noon of the day. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-hour-cnt**.png" height="300">
 
+Now, temperature also has a clear impact on cnt. As temperature goes up above 10 degree Celsius, cnt spikes up and remains this positive correlation with temperature up to nearly 30 degree Celsius. Then the increase in cnt slows down a bit, even starts to decrease from looking at the data we have. This graph below indicates that we should look at the effect of temperature on cnt by different temperature intervals. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/t2-cnt.png" height="300">
 
+As we try to combine effects of temperature and time on cnt, we found that in months of higher average temperatures like July and August, the comparison(from the first graph above, hour versus cnt) we made between morning and evening traffic period are reversed. As time moves into summer, temperature rises and the bike sharing count during evening-traffic period climbs and reaches its peak in July and August, exceeding the numbers during morning-traffic period. 
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/month:t-hour-cnt*.png" height="300">
+
+Finally, we have found that, as temperature increases to around 15 degree Celsius, the number of bikes rented on holidays exceeds that on regular days. This, however, may have been caused not only by the fact of increases in temperature, but also from other factors outside of the dataset we have, such as visitors from outside of London spending their holiday in the city and renting bikes as they go around.
+<img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-t2-cnt**.png" height="300">
+
+There are still a lot about this project one could do and add to. Feel free to leave comments and contributing to this project. 
 
