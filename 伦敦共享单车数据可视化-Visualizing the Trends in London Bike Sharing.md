@@ -245,6 +245,7 @@ At last, there are also patterns that are best visualized by histograms, so we w
 > 最后，还有一些适合通过柱状图可视化的数据关系，我们有`sorted-2d-hist`和`sorted-3d-hist`来做这件事。就像我们定义`plot2d`和`plot3d`的方式一样，这里也可以使用前面定义的`predicates`来控制输入数据，对比子集之间的差异。
 
 ```scheme
+;sorted-2d-hist
 (define sorted-2d-hist
   (lambda (str1 str2 lst)
     (let ([var1 (map (section list-ref <> (index-of str1 mod-first-row)) lst)]
@@ -256,6 +257,7 @@ At last, there are also patterns that are best visualized by histograms, so we w
         (let ([pairs (sort (2d-vars-mean var1 var2) sort-by-key)])
           (plot (discrete-histogram pairs)))))))
 
+;sorted-3d-hist
 (define sorted-3d-hist
   (lambda (str1 str2 str3 lst)
     (let ([var1 (map (section list-ref <> (index-of str1 mod-first-row)) lst)]
