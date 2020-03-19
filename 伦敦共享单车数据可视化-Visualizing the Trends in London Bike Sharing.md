@@ -308,4 +308,4 @@ Finally, we have found that, as temperature increases to around 15 degree Celsiu
 <img src="https://github.com/zzyylliu/misc-projects/blob/master/images%26dataset/images/holiday-t2-cnt**.png" height="500">
 
 There are still a lot about this project one could do and add to. Feel free to leave comments and contributing to this project. You can find the original code used in this project in the `images&dataset` file. 
-> 最后的最后，这个项目还有很大的改进和提升空间，欢迎任何人随时评论和为这个项目做贡献。您可以在 `images＆dataset`文件中找到此项目中使用的原始代码。
+> 最后的最后，这个项目还有很大的改进和提升空间，欢迎任何人随时评论和为这个项目做贡献。您可以在 `images＆dataset`文件夹里找到此项目中使用的原始代码。
